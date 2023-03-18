@@ -1,10 +1,10 @@
 #Tabalho de conclusão de curso
-código refeito em Orientado a Objeto, servindo como estudo e aprendizado, alem de melhorar o projeto.
-#Mudanças previstas
-Object Oriented;
-Chat visual and style changes;
-add some new systems, like: Forgot password, profile picture change, and some others!
-#Time to do this all:
-1 month
-Started: 18/03/2023
-End: 18/04/2023
++código refeito em Orientado a Objeto, servindo como estudo e aprendizado, alem de melhorar o projeto.
+##Mudanças previstas
++Orientado a Objeto;
++Mudanças visuais no chat;
++Adicionar alguns sistemas novos, como: Esqueci minha senha, mudar foto de perfil e outros!
+##Prazo:
++1 mês
++Começando em: 18/03/2023
++Terminando em: 18/04/2023
