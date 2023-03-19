@@ -2,6 +2,7 @@
     margin: 0;
     text-decoration: none;
     list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    
 }
 .collection .collection-item.avatar p {
@@ -19,6 +20,14 @@
     margin: 0;
 }
 
+.welcome{
+    font-size: 1.5vw;
+    position: relative;
+}
+
+#hide{
+    display: none;
+}
 /*bem vindo*/
 #registrar a{
     color:black;

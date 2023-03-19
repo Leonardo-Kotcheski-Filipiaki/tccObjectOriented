@@ -10,9 +10,17 @@ include DIR_TEMPLATES . "/nav.php";
 
 </head>
 <body>
+
+    <div class="card-panel green lighten-2 success" id="hide">
+        <p class="center">Login completo!</p>
+    </div>
+    <div class="card-panel green lighten-2 registered" id="hide">
+        <p class="center">Registro completo!</p>
+    </div>
+
         <div class="black" id="rainbow" >
             <div class="col s5">
-            <span id="bemvindo" class="flow-text center-align" >Seja bem vindo à nossa comunidade!</span>
+            <span id="bemvindo" class="flow-text center-align" >Seja bem vindo, entre nos chats e procure sua comunidade comunidade!</span>
             </div>
         </div>
         <?php
@@ -65,3 +73,35 @@ include DIR_TEMPLATES . "/nav.php";
     
     
 </body>
+
+
+<script>
+    let type = "<?php echo $_GET['check']; ?>"
+    
+    let success = document.querySelector("."+type);
+
+    let code = "<?php 
+    if($_SESSION['userName']){
+        if(!isset($_SESSION['AlreadyNotified'])){
+            echo $_GET['check'];
+            $_SESSION['AlreadyNotified'] = true;
+        }else{
+
+        }
+    }
+    ?>"
+
+    if(code == 'success'){
+        success.removeAttribute('id');
+        setTimeout(() => {
+        success.setAttribute('id', 'hide');
+    }, 1000);
+    
+    }else if(code == 'registered'){
+        success.removeAttribute('id');
+        setTimeout(() => {
+        success.setAttribute('id', 'hide');
+    }, 1000);
+    }
+
+</script>

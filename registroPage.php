@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['userName'])){
+if(!isset($_SESSION['loggedIn'])){
   
 }else{
-  header('Location: default.php');
+  header('Location: index.php');
 }
 require __DIR__. '/vendor/autoload.php';
 include 'config.php';
@@ -33,6 +33,18 @@ use \App\user\regFunc;
 <div class="row col s12 hide-on-small-only" id="fundo">
 <div class="row col s12 ">
 <h1 id="titulo">Registre-se</h1>
+<div class="red lighten-1 warning noEqPass" id="hide">
+  <p>Senhas não coerentes!</p>
+</div>
+<div class="red lighten-1 warning mailuserExists" id="hide">
+  <p>Email e usuario já existentes!</p>
+</div>
+<div class="red lighten-1 warning mailExists" id="hide">
+  <p>Email já existente!</p>
+</div>
+<div class="red lighten-1 warning userExists" id="hide">
+  <p>Usuario já existênte!</p>
+</div>
 </div class="col s12">    
 
     <form class="col s12"  method="POST">
@@ -152,14 +164,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if ($result) {
           session_destroy();
           session_start();
+          $_SESSION['loggedIn'] = true;
           $_SESSION['userName'] = $user;
-          header('Location: default.php?check=registered');
+          header('Location: index.php?check=registered');
           exit;
-        
     }
   }
 
   }
   
 ?>
+<script>
+  let type = "<?php echo $_GET['msg']; ?>"
+  let select = document.querySelector('.'+type);
+  if(type == 'noEqPass'){
+    select.removeAttribute('id');
+  }else if(type == 'mailuserExists'){
+    select.removeAttribute('id');
+  }else if(type == 'mailExists'){
+    select.removeAttribute('id');
+  }else if(type == 'userExists'){
+    select.removeAttribute('id');
+  }
+</script>
 

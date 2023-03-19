@@ -1,16 +1,16 @@
 <?php
 session_start();
-if(!isset($_SESSION['userName'])){
-
+if(!isset($_SESSION['loggedIn'])){
+  
 }else{
-  header('Location: default.php');
+  header('Location: index.php');
 }
 
 
 require __DIR__. '/vendor/autoload.php';
 include 'config.php';
 
-use \App\users\loginFunc;
+use \App\user\loginFunc;
 
 ?>
 <!DOCTYPE html>
@@ -36,12 +36,17 @@ use \App\users\loginFunc;
 
 <div class="row col s12 hide-on-small-only">
 <h1 id="titulo">Faça seu login</h1>
-</div class="col s12">    
+<div class="red lighten-1 warning" id="hide">
+  <p>Usuario ou senha estão errados.</p>
+</div>
+</div class="col s12">
+
     <form class="col s12 hide-on-small-only" method="POST">
+      
     <div class="row col s12">
         <div class="input-field col s12">
-          <input id="email" type="text" class="validate" name="user" placeholder="">
-          <label for="email">Email</label>
+          <input id="user" type="text" class="validate" name="user" placeholder="">
+          <label for="user">Email</label>
         </div>
       </div>
      
@@ -83,13 +88,16 @@ use \App\users\loginFunc;
 <div class="row" id="fundo">
 <div class="row col s12 show-on-small hide-on-med-and-up">
 <h1 id="titulo">Faça seu login</h1>
+<div class="red lighten-1 warning" id="hide">
+  <p>Usuario ou senha estão errados.</p>
+</div> 
 </div class="col s12">    
 
 <form class="col s12 show-on-small hide-on-med-and-up" method="POST">
     <div class="row col s12">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="user" placeholder="">
-          <label for="email">Email</label>
+          <input id="user" type="text" class="validate" name="user" placeholder="">
+          <label for="user">usuario</label>
         </div>
       </div>
      
@@ -134,12 +142,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($result) {
       session_destroy();
       session_start();
+      $_SESSION['loggedIn'] = true;
       $_SESSION['userName'] = $result['usuario'];
-      header('Location: default.php?check=deu');
+      $_SESSION['imgPerf'] = $result['imgPerf'];
+      header('Location: index.php?check=success');
       exit;
   } else {
-      
-      header('Location: default.php?check=nao');
+      header('Location: loginPage.php?check=unsuccess');
+      exit;
   }
 }
+
 ?>
+
+<script>
+  let unsuccess = document.querySelector('.warning');
+  let code = "<?php echo $_GET['check']; ?>"
+  console.log(code);
+  if(code == 'unsuccess'){
+    unsuccess.removeAttribute('id');
+  }
+
+
+
+</script>
+
+
+

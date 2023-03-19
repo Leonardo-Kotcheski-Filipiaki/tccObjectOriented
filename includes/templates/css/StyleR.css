@@ -1,4 +1,6 @@
-
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .validate{color: white;}
 #fundo{
     background-color: rgb(53, 53, 53);
@@ -37,6 +39,30 @@ body{
    overflow-x: hidden;
    overflow-y: hidden;
 }
+
+.warning{
+    font-size: 1vw;
+    font-family: Helvetica;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    padding-top: 0.1vh;
+    padding-bottom: 0.1vh;
+    margin-bottom: 1vh;
+}
+
+
+
+
+#hide{
+    display: none;
+}
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 1070px) and (min-width: 100px){

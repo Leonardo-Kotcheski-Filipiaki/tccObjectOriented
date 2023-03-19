@@ -6,7 +6,7 @@
 <nav>
   
     <div class="nav-wrapper blue darken-3">
-      <a class="brand-logo" href="" alt=""> 
+      <a class="brand-logo" href="index.php" alt=""> 
         <img id="logoimg" src="img/logo.png" alt="">
       </a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
