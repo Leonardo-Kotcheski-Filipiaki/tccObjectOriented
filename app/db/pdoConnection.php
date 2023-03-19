@@ -4,6 +4,7 @@ namespace App\db;
 
 use \PDO;
 use \PDOException;
+use \OpenSSLAsymmetricKey;
 
 class pdoConnection {
 
@@ -48,29 +49,29 @@ class pdoConnection {
      * @var PDO
      */
     private $conn;
+    
+    /** 
+     * Chave para criptografia
+     * 
+    */
+    private $key='CK5XiOmgnGq65EDWejXNFEJ9PoOTjoa2';
 
     /**
      * Se define a tabela e instância a conexão
      * @param string $table
     */
-    public function __construct($table = null){
-        $this->table = $table;
-        $this->setConnection();
+    public function __construct() {
+        $dsn = "mysql:host=".self::HOST.";port=".self::PORT.";dbname=".self::NAME;
+        try {
+            $this->conn = new PDO($dsn, self::USER, self::PASS);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 
-    /**
-     * Metodo responsavel por criar uma conexão com o banco de dados
-     */
-    private function setConnection(){
-        try{
-            $this->conn = new PDO('mysql:host='.self::HOST.';port='.self::PORT.'dbname='.self::NAME,self::USER,self::PASS);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            
-        }catch(PDOException $e){
-            die('ERROR'.$e->getMessage());
-        }
-
-
+    public function getConnection() {
+        return $this->conn;
     }
 
 }

@@ -1,9 +1,17 @@
 <?php
+session_start();
+if(!isset($_SESSION['userName'])){
+
+}else{
+  header('Location: default.php');
+}
+
 
 require __DIR__. '/vendor/autoload.php';
 include 'config.php';
 
-use \App\login\login;
+use \App\users\loginFunc;
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,7 +40,7 @@ use \App\login\login;
     <form class="col s12 hide-on-small-only" method="POST">
     <div class="row col s12">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="user" placeholder="">
+          <input id="email" type="text" class="validate" name="user" placeholder="">
           <label for="email">Email</label>
         </div>
       </div>
@@ -60,7 +68,7 @@ use \App\login\login;
       </div>
      
       
-       <p class="frase col s12 flow-text">Ainda não possui uma conta? <a href="/Registro/registroPage.php" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
+       <p class="frase col s12 flow-text">Ainda não possui uma conta? <a href="registroPage.php" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
          
     </form>
     </div>
@@ -109,7 +117,7 @@ use \App\login\login;
           
       </div>
       
-      <p class="frase col s12 flow-text hide">Ainda não possui uma conta? <a class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
+      <p class="frase col s12 flow-text hide">Ainda não possui uma conta? <a href="registroPage.php" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
       </form>
       
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -117,3 +125,21 @@ use \App\login\login;
          </body>
          </html>
 
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $user = $_POST['user'];
+  $pass = $_POST['pass'];
+  $try = new loginFunc();
+  $result = $try->login($user, $pass);
+  if ($result) {
+      session_destroy();
+      session_start();
+      $_SESSION['userName'] = $result['usuario'];
+      header('Location: default.php?check=deu');
+      exit;
+  } else {
+      
+      header('Location: default.php?check=nao');
+  }
+}
+?>

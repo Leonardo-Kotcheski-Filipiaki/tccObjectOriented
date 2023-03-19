@@ -50,6 +50,7 @@
 }
 #div_registro{
     text-align: center;
+    margin-bottom: 1.5vw;
     
 }
 #TGE{
@@ -161,7 +162,7 @@ body{
     background: #1D1F20;
     position: relative;
     border-radius: var(--borderWidth);
-    margin-bottom: 4vw;
+    
   }
   #opcoesDiv{
     height: 93.1vh;
