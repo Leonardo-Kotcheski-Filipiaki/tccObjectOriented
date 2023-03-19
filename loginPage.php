@@ -1,7 +1,9 @@
 <?php
 
+require __DIR__. '/vendor/autoload.php';
 include 'config.php';
 
+use \App\login\login;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,17 +29,17 @@ include 'config.php';
 <div class="row col s12 hide-on-small-only">
 <h1 id="titulo">Faça seu login</h1>
 </div class="col s12">    
-    <form class="col s12 hide-on-small-only" action="loginFunc.php" method="POST">
+    <form class="col s12 hide-on-small-only" method="POST">
     <div class="row col s12">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="emailLogin" placeholder="">
+          <input id="email" type="email" class="validate" name="user" placeholder="">
           <label for="email">Email</label>
         </div>
       </div>
      
       <div class="row col s12">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate"  name="senhaLogin" placeholder="">
+          <input id="password" type="password" class="validate"  name="pass" placeholder="">
           <label for="password">Senha</label>
         </div>
       </div>
@@ -75,17 +77,17 @@ include 'config.php';
 <h1 id="titulo">Faça seu login</h1>
 </div class="col s12">    
 
-<form class="col s12 show-on-small hide-on-med-and-up" action="loginFunc.php" method="POST">
+<form class="col s12 show-on-small hide-on-med-and-up" method="POST">
     <div class="row col s12">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="emailLogin" placeholder="">
+          <input id="email" type="email" class="validate" name="user" placeholder="">
           <label for="email">Email</label>
         </div>
       </div>
      
       <div class="row col s12">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate"  name="senhaLogin" placeholder="">
+          <input id="password" type="password" class="validate" name="pass" placeholder="">
           <label for="password">Senha</label>
         </div>
       </div>

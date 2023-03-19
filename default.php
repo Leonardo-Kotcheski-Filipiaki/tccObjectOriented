@@ -4,7 +4,6 @@ include 'C:\\xampp\\htdocs\\tccOO\\config.php';
 include DIR_TEMPLATES . "/head.php";
 include DIR_TEMPLATES . "/nav.php";
 
-
 ?>
 
 </head>
