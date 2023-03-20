@@ -6,22 +6,18 @@
     </div>
 
     <div class="perfilitem" id="perfil_perfil">
-    <li ><a class="perfilLinks" href=" <?php echo URL_BASE;?>/perfil/perfil.php">Perfil</a></li>
+    <li ><a class="perfilLinks" href="perfil.php">Perfil</a></li>
     </div>
 
     <div class="perfilitem" id="perfil_Editperfil">
-    <li ><a class="perfilLinks" href="http://localhost/TGE/perfil/modificarPerfil.php">Editar perfil</a></li>
+    <li ><a class="perfilLinks" href="modificarPerfil.php" >Editar perfil</a></li>
     </div>
-   <?php if($_SESSION['sessionType'] == "LoginWithTGE"){
 
-    echo '<div class="perfilitem" id="perfil_seguranca">
-    <li ><a class="perfilLinks" href="'.URL_BASE.'/perfil/seguranca.php">Segurança</a></li>
-    </div>';
-    
-   }
-   ?>
+    <div class="perfilitem" id="perfil_seguranca">
+    <li ><a class="perfilLinks" >Segurança</a></li>
+    </div>
    <div class="perfilitem" id="sair">
-    <li ><a style="color:red;" href="<?php echo URL_BASE;?>/logout.php">Sair</a></li>
+    <li ><a href="logoutprov.php" style="color:red;">Sair</a></li>
     </div>
 </ul>    
 </div>

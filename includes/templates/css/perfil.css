@@ -1,0 +1,97 @@
+#perfil_perfil{
+    border: solid black 2px;
+    border-radius: 1vh 1vh 1vh 1vh;
+    background-color: #3B3E42;
+    padding: 0 3.76vw 0 1vh;
+    font-size: 1vw;
+    margin: 0;
+}
+#perfil_Editperfil{
+    border: solid #424549 2px;
+    border-radius: 1vh 1vh 1vh 1vh;
+    font-size: 1vw;
+    padding: 0 1vw 0 1vh;
+ 
+    margin: 1vh 0 1vh 0;
+}
+#perfil_seguranca{
+    border: solid #424549 2px;
+    border-radius: 1vh 1vh 1vh 1vh;
+    font-size: 1vw;
+    padding: 0 3.76vw 0 1vh;
+    
+    margin: 0 ;
+  
+}
+
+#usuariosAvat{
+    float:right;
+    margin-top: 4vw;
+}
+
+
+#descrip{
+    display:block;
+    margin-top: 5vw;
+    margin-left: 12vw;
+}
+
+#descrition{
+    background-color: rgb(63, 61, 61);
+    border: solid rgb(10, 9, 9) 2px;
+    border-radius: 40px;
+    padding: 15px;
+    color: rgb(189, 189, 189);
+    text-align: justify;
+    word-wrap: break-word;
+    min-height: 14vh;
+}
+#tituloDescr{
+    color: aliceblue;
+    text-align: center;
+}
+#nomePerfil{
+    text-decoration: underline;
+    color: white;
+    font-size: 2vw;
+    margin: 0;
+}
+#imgUsuario{
+    border: black solid 3px;
+    width: 10vw;
+    max-width: 300px;
+    min-width: 100px;
+}
+#jogosFav{
+    text-align: center;
+  
+    color: aliceblue;
+}
+.imgFav{
+    width: 15vw;
+
+    min-width:50px;
+    max-height: 300px;
+    min-width: 110px;
+    margin-right: 2vw;
+    border: solid 2px black;
+}
+#sair{
+    border: solid  #424549 2px;
+    border-radius: 1vh 1vh 1vh 1vh;
+    font-size: 1vw;
+    padding: 0 3.76vw 0 1vh;
+    margin-top: 0.5vw;
+  
+}
+@media screen and (max-width: 992px) and (min-width: 0px){
+    #usuariosAvat{
+        text-align: center;
+        display: block;
+        color: aliceblue;
+        margin-top: 10vh;
+        float: none;
+        width: 100%;
+    }
+  
+}

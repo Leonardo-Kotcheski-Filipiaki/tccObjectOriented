@@ -17,7 +17,7 @@
             echo "<a href='loginPage.php'> Iniciar sessão";
 
           }else{
-            echo "<a> ".$_SESSION['userName'];
+            echo "<a href='perfil.php'> ".$_SESSION['userName'];
             } ;
 
         
