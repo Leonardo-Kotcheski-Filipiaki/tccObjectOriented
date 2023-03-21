@@ -1,5 +1,5 @@
 
-<div id="opcoesDiv" >
+<div id="opcoesDiv">
 <ul id="aba_perfil">
     <div>
     <h1 id="opcoesperfil" >Opções</h1>

@@ -18,7 +18,7 @@ include DIR_TEMPLATES.'/nav.php';
 
 
 <body>
-    
+
 
 <div class="row col s12">
 <?php  include 'includes/templates/opcoes.php';?> 
@@ -58,3 +58,7 @@ include DIR_TEMPLATES.'/nav.php';
 
 </body>
 </html>
+
+
+
+

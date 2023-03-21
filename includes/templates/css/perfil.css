@@ -29,6 +29,9 @@
     margin-top: 4vw;
 }
 
+#hide{
+    display: none;
+}
 
 #descrip{
     display:block;

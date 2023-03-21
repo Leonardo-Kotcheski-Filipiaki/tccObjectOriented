@@ -1,19 +1,13 @@
 <?php
 session_start();
+
 include 'config.php';
-if (isset($_SESSION['userName'])) {
-} else {
-  Header("Location: index.php");
-}
+require __DIR__ . '/vendor/autoload.php';
+
+use \App\user\updateClass;
+
+
 include 'includes/templates/head.php';
-
-$user = $_SESSION['userName'];
-
-if ($_SESSION['type'] == "LoggedWithTGE") {
-
-}
-
-
 ?>
 
 <script src="includes/js/jquery.min.js"></script>
@@ -37,6 +31,8 @@ include 'includes/templates/opcoes.php';
 
 
 <body>
+  
+
   <div class="row">
 
     <ul class="col s10 m8 l6 offset-s1 offset-m2 offset-l2 collapsible">
@@ -50,8 +46,7 @@ include 'includes/templates/opcoes.php';
         <div class="collapsible-body">
           <form method="post">
             <h3 class="flow-text">Alterar nome:</h3>
-            <input name="alterarNome" class="inputModif" data-ls-module="charCounter" minLength="4"
-              maxLength="16"></input>
+            <input name="name" class="inputModif" data-ls-module="charCounter" minLength="4" maxLength="16"></input>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
         </div>
@@ -184,3 +179,24 @@ include 'includes/templates/opcoes.php';
 
 
 </body>
+</html>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['name'])) {
+    $type = 'name';
+    $value = $_POST['name'];
+    $table = $_SESSION['type'];
+    $oldName = $_SESSION['userName'];
+    $try = new updateClass();
+    $result = $try->update($type, $value, $table, $oldName);
+    if($result){
+      $_SESSION['userName'] = $_POST['name'];
+      $_SESSION['modAlreadyNotified'] = false;
+      echo"<meta HTTP-EQUIV='refresh' CONTENT='0;URL=perfil.php?class=successNameChange'>";
+    }
+  }
+}
+?>
+
+
