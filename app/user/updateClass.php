@@ -33,20 +33,4 @@ class updateClass
     }
 
 
-    private function updateSession(string $value, string $table)
-    {
-
-        if ($table == 'LoggedWithTGE') {
-            $table = 'usuariostge';
-            $stmt = $this->conn->prepare("SELECT usuario FROM " . $table . " WHERE usuario = :name");
-            $stmt->bindParam(":name", $value);
-            $stmt->execute();
-            $log = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $log;
-
-        }
-
-    }
-
-
 }
