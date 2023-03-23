@@ -1,0 +1,13 @@
+RewriteEngine on
+
+RewriteRule home home.php
+
+RewriteRule login loginPage.php
+
+RewriteRule registrar registroPage.php
+
+RewriteRule user perfil.php
+
+RewriteRule modificar modificarPerfil.php
+
+RewriteRule logout logoutprov.php

@@ -1,21 +1,15 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedIn'])) {
-    header("Location: Index.php");
+    header("Location: home");
 }
 include 'config.php';
 include DIR_TEMPLATES . '/head.php';
 include DIR_TEMPLATES . '/nav.php';
 
 ?>
-<link rel="stylesheet" href="includes/templates/css/perfil.css" alt="">
-
-
-
-
+<link rel="stylesheet" href="includes/templates/css/perfil.css">
 <body>
-
-
     <div class="row col s12">
         <?php include 'includes/templates/opcoes.php'; ?>
         <div class="card-panel green lighten-2 successNameChange" id='hide'>
@@ -39,10 +33,6 @@ include DIR_TEMPLATES . '/nav.php';
                 <h2 class="flow-text" id="tituloDescr">Descrição</h2>
                 <p id="descrition">
             </div>
-
-
-
-
 
         </div>
         <div class="col l10 m12 s12" id="jogosFav">

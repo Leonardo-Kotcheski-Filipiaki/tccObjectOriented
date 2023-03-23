@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $oPass = $_POST['pass_repeat'];
 
   if ($pass != $oPass) {
-    header('Location: registroPage.php?msg=noEqPass');
+    header('Location: registrar?msg=noEqPass');
   } else {
     $try = new regFunc();
     $result = $try->register($user, $mail, $pass);
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['loggedIn'] = true;
       $_SESSION['type'] = 'LoggedWithTGE';
       $_SESSION['userName'] = $user;
-      header('Location: index.php?check=registered');
+      header('Location: home?check=registered');
       exit;
     }
   }
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <p>Email já existente!</p>
         </div>
         <div class="red lighten-1 warning userExists" id="hide">
-          <p>Usuario já existênte!</p>
+          <p>Nome de usuario já existênte!</p>
         </div>
       </div class="col s12">
 
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="row col s12">
           <button type="submit" class="btn">Registrar</button>
         </div>
-        <p class="frase col s12 flow-text">Já possui uma conta? <a href="loginPage.php"
+        <p class="frase col s12 flow-text">Já possui uma conta? <a href="login"
             class="frase col s12 flow-text"><u>Clique aqui e entre!</u></a></p>
 
       </form>
@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="row col s12">
         <button type="submit" class="btn">Registrar</button>
       </div>
-      <p class="frase col s12 flow-text">Já possui uma conta? <a href="loginPage.php"
+      <p class="frase col s12 flow-text">Já possui uma conta? <a href="login"
           class="frase col s12 flow-text"><u>Clique aqui e entre!</u></a></p>
 
     </form>

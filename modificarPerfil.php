@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $value = $_POST['name'];
     if ($value == '') {
       $_SESSION['errorAlreadyNotified'] = false;
-      header("Location: modificarPerfil.php?msg=empty");
+      header("Location: modificar?msg=empty");
       exit;
     }
     $table = $_SESSION['type'];
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result) {
       $_SESSION['userName'] = $_POST['name'];
       $_SESSION['modAlreadyNotified'] = false;
-      header("Location: perfil.php?class=successNameChange");
+      header("Location: user?class=successNameChange");
       exit;
     }
   }

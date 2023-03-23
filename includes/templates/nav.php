@@ -6,7 +6,7 @@
 <nav>
   
     <div class="nav-wrapper blue darken-3">
-      <a class="brand-logo" href="index.php" alt=""> 
+      <a class="brand-logo" href="home" alt=""> 
         <img id="logoimg" src="img/logo.png" alt="">
       </a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -14,10 +14,10 @@
         <li><?php
           
           if(!isset($_SESSION['userName'])){
-            echo "<a href='loginPage.php'> Iniciar sessão";
+            echo "<a href='login'> Iniciar sessão";
 
           }else{
-            echo "<a href='perfil.php'> ".$_SESSION['userName'];
+            echo "<a href='user'> ".$_SESSION['userName'];
             } ;
 
         

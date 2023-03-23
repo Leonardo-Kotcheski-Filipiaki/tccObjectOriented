@@ -34,7 +34,7 @@ include DIR_TEMPLATES . "/nav.php";
 
         <div id="div_registro" class="row">
         <div class="col s6 m4 l2 offset-s3 offset-m4 offset-l5 light-green accent-2 " id="registrar"> 
-            <a href="registroPage.php">
+            <a href="registrar">
            <h2 class="flow-text center-align" id="btnreg">Crie uma!</h2>
            </a>
         </div>

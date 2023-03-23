@@ -26,11 +26,11 @@ class regFunc{
         $resultUser = $this->existUser($this->user);
         $resultMail = $this->existsMail($this->mail);
         if($resultUser && $resultMail){
-            header("Location: registroPage.php?msg=mailuserExists");
+            header("Location: registrar?msg=mailuserExists");
         }else if($resultMail){
-            header("Location: registroPage.php?msg=mailExists");
+            header("Location: registrar?msg=mailExists");
         }else if($resultUser){
-            header("Location: registroPage.php?msg=userExists");
+            header("Location: registrar?msg=userExists");
         }else{
             $stmt = $this->conn->prepare('INSERT INTO usuariostge (usuario, email, senha, imgPerf) VALUES(:user, :mail, :pass, "icon.png")');
             $stmt->bindParam(':user', $user);

@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['loggedIn'])){
   
 }else{
-  header('Location: index.php');
+  header('Location: home');
 }
 
 
@@ -73,7 +73,7 @@ use \App\user\loginFunc;
       </div>
      
       
-       <p class="frase col s12 flow-text">Ainda não possui uma conta? <a href="registroPage.php" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
+       <p class="frase col s12 flow-text">Ainda não possui uma conta? <a href="registrar" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
          
     </form>
     </div>
@@ -125,7 +125,7 @@ use \App\user\loginFunc;
           
       </div>
       
-      <p class="frase col s12 flow-text hide">Ainda não possui uma conta? <a href="registroPage.php" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
+      <p class="frase col s12 flow-text hide">Ainda não possui uma conta? <a href="registrar" class="frase col s12 flow-text"><u>Clique aqui e crie uma!</u></a></p>
       </form>
       
          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -146,10 +146,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['type'] = 'LoggedWithTGE';
       $_SESSION['userName'] = $result['usuario'];
       $_SESSION['imgPerf'] = $result['imgPerf'];
-      header('Location: index.php?check=success');
+      header('Location: home?check=success');
       exit;
   } else {
-      header('Location: loginPage.php?check=unsuccess');
+      header('Location: login?check=unsuccess');
       exit;
   }
 }
