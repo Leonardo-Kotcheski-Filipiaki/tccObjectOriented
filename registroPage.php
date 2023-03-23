@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['loggedIn'])) {
 
 } else {
@@ -8,14 +7,31 @@ if (!isset($_SESSION['loggedIn'])) {
 }
 require __DIR__ . '/vendor/autoload.php';
 include 'config.php';
-
 use \App\user\regFunc;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $user = $_POST['user'];
+  $mail = $_POST['email'];
+  $pass = $_POST['pass'];
+  $oPass = $_POST['pass_repeat'];
 
+  if ($pass != $oPass) {
+    header('Location: registroPage.php?msg=noEqPass');
+  } else {
+    $try = new regFunc();
+    $result = $try->register($user, $mail, $pass);
+    if ($result) {
+      session_destroy();
+      session_start();
+      $_SESSION['loggedIn'] = true;
+      $_SESSION['type'] = 'LoggedWithTGE';
+      $_SESSION['userName'] = $user;
+      header('Location: index.php?check=registered');
+      exit;
+    }
+  }
 
-
-
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,29 +172,7 @@ use \App\user\regFunc;
 
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $user = $_POST['user'];
-  $mail = $_POST['email'];
-  $pass = $_POST['pass'];
-  $oPass = $_POST['pass_repeat'];
 
-  if ($pass != $oPass) {
-    header('Location: registroPage.php?msg=noEqPass');
-  } else {
-    $try = new regFunc();
-    $result = $try->register($user, $mail, $pass);
-    if ($result) {
-      session_destroy();
-      session_start();
-      $_SESSION['loggedIn'] = true;
-      $_SESSION['type'] = 'LoggedWithTGE';
-      $_SESSION['userName'] = $user;
-      header('Location: index.php?check=registered');
-      exit;
-    }
-  }
-
-}
 
 ?>
 <script>

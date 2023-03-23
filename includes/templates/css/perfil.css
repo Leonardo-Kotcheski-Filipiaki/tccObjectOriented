@@ -1,3 +1,4 @@
+
 #perfil_perfil{
     border: solid black 2px;
     border-radius: 1vh 1vh 1vh 1vh;
@@ -23,7 +24,9 @@
     margin: 0 ;
   
 }
-
+.successNameChange{
+    margin-top: -0.2vw;
+}
 #usuariosAvat{
     float:right;
     margin-top: 4vw;

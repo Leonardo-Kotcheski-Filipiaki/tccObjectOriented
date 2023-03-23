@@ -6,8 +6,32 @@ require __DIR__ . '/vendor/autoload.php';
 
 use \App\user\updateClass;
 
-
 include 'includes/templates/head.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['name'])) {
+    $type = 'name';
+    $value = $_POST['name'];
+    if ($value == '') {
+      $_SESSION['errorAlreadyNotified'] = false;
+      header("Location: modificarPerfil.php?msg=empty");
+      exit;
+    }
+    $table = $_SESSION['type'];
+    $oldName = $_SESSION['userName'];
+    $try = new updateClass();
+    $result = $try->update($type, $value, $table, $oldName);
+    if ($result) {
+      $_SESSION['userName'] = $_POST['name'];
+      $_SESSION['modAlreadyNotified'] = false;
+      header("Location: perfil.php?class=successNameChange");
+      exit;
+    }
+  }
+}
+
+
+
 ?>
 
 <script src="includes/js/jquery.min.js"></script>
@@ -31,8 +55,10 @@ include 'includes/templates/opcoes.php';
 
 
 <body>
-  
 
+  <div class="card-panel red lighten-2 empty" id='hide'>
+    <p class="center">Nome não pode ser vazio!</p>
+  </div>
   <div class="row">
 
     <ul class="col s10 m8 l6 offset-s1 offset-m2 offset-l2 collapsible">
@@ -46,7 +72,8 @@ include 'includes/templates/opcoes.php';
         <div class="collapsible-body">
           <form method="post">
             <h3 class="flow-text">Alterar nome:</h3>
-            <input name="name" class="inputModif" data-ls-module="charCounter" minLength="4" maxLength="16"></input>
+            <input name="name" type="text" class="inputModif" data-ls-module="charCounter" minLength="4"
+              maxLength="16"></input>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
         </div>
@@ -179,24 +206,27 @@ include 'includes/templates/opcoes.php';
 
 
 </body>
+
 </html>
 
+
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (isset($_POST['name'])) {
-    $type = 'name';
-    $value = $_POST['name'];
-    $table = $_SESSION['type'];
-    $oldName = $_SESSION['userName'];
-    $try = new updateClass();
-    $result = $try->update($type, $value, $table, $oldName);
-    if($result){
-      $_SESSION['userName'] = $_POST['name'];
-      $_SESSION['modAlreadyNotified'] = false;
-      echo"<meta HTTP-EQUIV='refresh' CONTENT='0;URL=perfil.php?class=successNameChange'>";
-    }
+if (isset($_GET['msg']) == 'empty') {
+  if ($_SESSION['errorAlreadyNotified'] == false) {
+    $value = $_GET['msg'];
+    echo "<script>
+        let type = '" . $value . "'
+        console.log(type)
+        let doc = document.querySelector('.empty');
+        if(type == 'empty'){
+            doc.removeAttribute('id');
+            setTimeout(() => {
+                doc.setAttribute('id', 'hide'); 
+            }, 1250);
+        }
+        </script>";
+    $_SESSION['errorAlreadyNotified'] = true;
   }
+
 }
 ?>
-
-

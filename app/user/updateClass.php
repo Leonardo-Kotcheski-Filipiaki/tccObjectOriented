@@ -22,15 +22,15 @@ class updateClass
     public function update(string $type, string $value, string $table, string $oldName)
     {
 
-        if ($type == 'name' && $table == 'LoggedWithTGE') {
-            $table = 'usuariostge';
-            $stmt = $this->conn->prepare("UPDATE " . $table . " SET usuario = :name WHERE usuario = :oldName");
-            $stmt->bindParam(":name", $value);
-            $stmt->bindParam(":oldName", $oldName);
-            $log = $stmt->execute();
-            return $log;
+        if ($type == 'name') {
+            if ($table == 'LoggedWithTGE') {
+                $table = 'usuariostge';
+                $stmt = $this->conn->prepare("UPDATE " . $table . " SET usuario = :name WHERE usuario = :oldName");
+                $stmt->bindParam(":name", $value);
+                $stmt->bindParam(":oldName", $oldName);
+                $log = $stmt->execute();
+                return $log;
+            }
         }
     }
-
-
 }
