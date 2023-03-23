@@ -9,11 +9,15 @@ include DIR_TEMPLATES . '/nav.php';
 
 ?>
 <link rel="stylesheet" href="includes/templates/css/perfil.css">
+
 <body>
     <div class="row col s12">
         <?php include 'includes/templates/opcoes.php'; ?>
         <div class="card-panel green lighten-2 successNameChange" id='hide'>
             <p class="center">Nome alterado com sucesso!</p>
+        </div>
+        <div class="card-panel green lighten-2 successDescChange" id='hide'>
+            <p class="center">Descrição alterada com sucesso!</p>
         </div>
 
         <div class="col s12 m12 l3 offset-col l9">
@@ -31,7 +35,7 @@ include DIR_TEMPLATES . '/nav.php';
 
             <div class="col l5 m9 s9" id="descrip">
                 <h2 class="flow-text" id="tituloDescr">Descrição</h2>
-                <p id="descrition">
+                <p id="descrition"><?php echo $_SESSION['desc']; ?></p>
             </div>
 
         </div>
@@ -62,7 +66,23 @@ if ($value == 'successNameChange') {
             let type = '" . $value . "'
             console.log(type)
             let doc = document.querySelector('.'+type);
-            if(type == 'successNameChange'){
+            if(type == '" . $value . "'){
+                doc.removeAttribute('id');
+                setTimeout(() => {
+                    doc.setAttribute('id', 'hide');
+            
+                }, 1000);
+            }
+            </script>";
+        $_SESSION['modAlreadyNotified'] = true;
+    }
+} else if ($value == 'successDescChange') {
+    if ($_SESSION['modAlreadyNotified'] == false) {
+        echo "<script>
+            let type = '" . $value . "'
+            console.log(type)
+            let doc = document.querySelector('.'+type);
+            if(type == '" . $value . "'){
                 doc.removeAttribute('id');
                 setTimeout(() => {
                     doc.setAttribute('id', 'hide');

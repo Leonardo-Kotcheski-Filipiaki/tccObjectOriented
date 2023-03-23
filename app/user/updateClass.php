@@ -19,15 +19,24 @@ class updateClass
 
     }
 
-    public function update(string $type, string $value, string $table, string $oldName)
+    public function update(string $type, string $value, string $table, string $name)
     {
 
         if ($type == 'name') {
             if ($table == 'LoggedWithTGE') {
                 $table = 'usuariostge';
-                $stmt = $this->conn->prepare("UPDATE " . $table . " SET usuario = :name WHERE usuario = :oldName");
+                $stmt = $this->conn->prepare("UPDATE " . $table . " SET usuario = :name WHERE usuario = :user");
                 $stmt->bindParam(":name", $value);
-                $stmt->bindParam(":oldName", $oldName);
+                $stmt->bindParam(":user", $name);
+                $log = $stmt->execute();
+                return $log;
+            }
+        } else if ($type == 'descriptionChange') {
+            if ($table == 'LoggedWithTGE') {
+                $table = 'usuariostge';
+                $stmt = $this->conn->prepare("UPDATE " . $table . " SET descricao = :value WHERE usuario = :user");
+                $stmt->bindParam(":value", $value);
+                $stmt->bindParam(":user", $name);
                 $log = $stmt->execute();
                 return $log;
             }

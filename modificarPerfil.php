@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $value = $_POST['name'];
     if ($value == '') {
       $_SESSION['errorAlreadyNotified'] = false;
-      header("Location: modificar?msg=empty");
+      header("Location: modificar?msg=emptyN");
       exit;
     }
     $table = $_SESSION['type'];
@@ -25,6 +25,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['userName'] = $_POST['name'];
       $_SESSION['modAlreadyNotified'] = false;
       header("Location: user?class=successNameChange");
+      exit;
+    }
+  } else if (isset($_POST['descriptionChange'])) {
+    $type = 'descriptionChange';
+    $value = $_POST['descriptionChange'];
+    if ($value == '') {
+      $_SESSION['errorAlreadyNotified'] = false;
+      header("Location: modificar?msg=emptyD");
+      exit;
+    }
+    $table = $_SESSION['type'];
+    $name = $_SESSION['userName'];
+    $try = new updateClass();
+    $result = $try->update($type, $value, $table, $name);
+    if($result){
+      $_SESSION['desc'] = $_POST['descriptionChange'];
+      $_SESSION['modAlreadyNotified'] = false;
+      header("Location: user?class=successDescChange");
       exit;
     }
   }
@@ -55,8 +73,9 @@ include 'includes/templates/opcoes.php';
 
 
 <body>
+  <!-- Alteração de nome de exibição e login -->
 
-  <div class="card-panel red lighten-2 empty" id='hide'>
+  <div class="card-panel red lighten-2 emptyN" id='hide'>
     <p class="center">Nome não pode ser vazio!</p>
   </div>
   <div class="row">
@@ -72,30 +91,32 @@ include 'includes/templates/opcoes.php';
         <div class="collapsible-body">
           <form method="post">
             <h3 class="flow-text">Alterar nome:</h3>
-            <input name="name" type="text" class="inputModif" data-ls-module="charCounter" minLength="4"
-              maxLength="16"></input>
+            <input name="name" type="text" class="inputModif" data-ls-module="charCounter" minLength="6" maxLength="16"
+              required></input>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
         </div>
       </li>
 
+      <!-- Alteração de descrição -->
+
       <li>
         <div class="collapsible-header">
-          <p class="editPerf">Editar descricão
-          <p>
+          <p class="editPerf">Editar descricão</p>
         </div>
 
         <div class="collapsible-body">
 
           <form method="post">
             <h3 class="flow-text" id="tituDesc">Alterar descrição:</h3>
-            <textarea name="descriptionChange" id="textDescr" minLength="1" maxLength="1000"
+            <textarea name="descriptionChange" id="textDescr" maxlength="1000" minlength="1" required
               style="resize: none; height:22vh; color:black; padding:4px 4px 4px 4px; background-color:aliceblue;"></textarea>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
 
         </div>
       </li>
+
       <li>
         <div class="collapsible-header">
           <p class="editPerf">Mudar jogos favoritos
@@ -211,13 +232,13 @@ include 'includes/templates/opcoes.php';
 
 
 <?php
-if (isset($_GET['msg']) == 'empty') {
+if (isset($_GET['msg']) == 'emptyN') {
   if ($_SESSION['errorAlreadyNotified'] == false) {
     $value = $_GET['msg'];
     echo "<script>
         let type = '" . $value . "'
         console.log(type)
-        let doc = document.querySelector('.empty');
+        let doc = document.querySelector('.emptyN');
         if(type == 'empty'){
             doc.removeAttribute('id');
             setTimeout(() => {
