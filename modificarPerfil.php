@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result) {
       $_SESSION['userName'] = $_POST['name'];
       $_SESSION['modAlreadyNotified'] = false;
-      header("Location: user?class=successNameChange");
+      header("Location: user?msg=successNameChange");
       exit;
     }
   } else if (isset($_POST['descriptionChange'])) {
@@ -39,10 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_SESSION['userName'];
     $try = new updateClass();
     $result = $try->update($type, $value, $table, $name);
-    if($result){
+    if ($result) {
       $_SESSION['desc'] = $_POST['descriptionChange'];
       $_SESSION['modAlreadyNotified'] = false;
-      header("Location: user?class=successDescChange");
+      header("Location: user?msg=successDescChange");
       exit;
     }
   }
@@ -54,6 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script src="includes/js/jquery.min.js"></script>
 <script src="includes/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.0.0-rc.4/dist/js/tom-select.complete.min.js"></script>
+
 <script src="includes/js/croppie.js"></script>
 <link rel="stylesheet" href="includes/templates/css/croppie.css" />
 
@@ -133,76 +136,69 @@ include 'includes/templates/opcoes.php';
 
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav" class="jogosFav">
-                  <option value="" disabled selected>Jogo favorito</option>
-
-                  <option data-icon="img\games\valorant.jpg" class="left" value="valorant.jpg">Valorant</option>
-                  <option data-icon="img\games\minecraft.jpg" class="left" value="minecraft.jpg">Minecraft</option>
-                  <option data-icon="img\games\gtav.jpg" class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option data-icon="img\games\csgo.jpeg" class="left" value="csgo.jpeg">CS:GO</option>
-                  <option data-icon="img\games\dk3.jpg" class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option data-icon="img\games\genshin.jpg" class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option data-icon="img\games\lol.jpg" class="left" value="lol.jpg">League of Legends</option>
-                  <option data-icon="img\games\tft.jpg" class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option data-icon="img\games\mk11.jpg" class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option data-icon="img\games\fortnite.jpg" class="left" value="fortnite.jpg">Fortnite</option>
-                  <option data-icon="img\games\eldenring.jpg" class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option data-icon="img\games\apex.jpg" class="left" value="apex.jpg">Apex Legends</option>
-                  <option data-icon="img\games\wow.jpg" class="left" value="wow.jpg">World of Warcraft</option>
-                  <option data-icon="img\games\codwz.jpg" class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option data-icon="img\games\roblox.jpg" class="left" value="roblox.jpg">Roblox</option>
-
+                  <option value="" disable selected>Jogo favorito</option>
+                  <option class="left" value="valorant.jpg">Valorant</option>
+                  <option class="left" value="minecraft.jpg">Minecraft</option>
+                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
+                  <option class="left" value="csgo.jpeg">CS:GO</option>
+                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
+                  <option class="left" value="genshin.jpg">Genshin Impact</option>
+                  <option class="left" value="lol.jpg">League of Legends</option>
+                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
+                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
+                  <option class="left" value="fortnite.jpg">Fortnite</option>
+                  <option class="left" value="eldenring.jpg">Elden Ring</option>
+                  <option class="left" value="apex.jpg">Apex Legends</option>
+                  <option class="left" value="wow.jpg">World of Warcraft</option>
+                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
+                  <option class="left" value="roblox.jpg">Roblox</option>
                 </select>
-
               </div>
+
               <div class="col s12 m3 offset-m1" id="meioFav">
                 <select name="jogosFav2" class="jogosFav">
                   <option value="" disabled selected>Jogo favorito</option>
-
-
-                  <option data-icon="img\games\valorant.jpg" class="left" value="valorant.jpg">Valorant</option>
-                  <option data-icon="img\games\minecraft.jpg" class="left" value="minecraft.jpg">Minecraft</option>
-                  <option data-icon="img\games\gtav.jpg" class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option data-icon="img\games\csgo.jpeg" class="left" value="csgo.jpeg">CS:GO</option>
-                  <option data-icon="img\games\dk3.jpg" class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option data-icon="img\games\genshin.jpg" class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option data-icon="img\games\lol.jpg" class="left" value="lol.jpg">League of Legends</option>
-                  <option data-icon="img\games\tft.jpg" class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option data-icon="img\games\mk11.jpg" class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option data-icon="img\games\fortnite.jpg" class="left" value="fortnite.jpg">Fortnite</option>
-                  <option data-icon="img\games\eldenring.jpg" class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option data-icon="img\games\apex.jpg" class="left" value="apex.jpg">Apex Legends</option>
-                  <option data-icon="img\games\wow.jpg" class="left" value="wow.jpg">World of Warcraft</option>
-                  <option data-icon="img\games\codwz.jpg" class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option data-icon="img\games\roblox.jpg" class="left" value="roblox.jpg">Roblox</option>
+                  <option class="left" value="valorant.jpg">Valorant</option>
+                  <option class="left" value="minecraft.jpg">Minecraft</option>
+                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
+                  <option class="left" value="csgo.jpeg">CS:GO</option>
+                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
+                  <option class="left" value="genshin.jpg">Genshin Impact</option>
+                  <option class="left" value="lol.jpg">League of Legends</option>
+                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
+                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
+                  <option class="left" value="fortnite.jpg">Fortnite</option>
+                  <option class="left" value="eldenring.jpg">Elden Ring</option>
+                  <option class="left" value="apex.jpg">Apex Legends</option>
+                  <option class="left" value="wow.jpg">World of Warcraft</option>
+                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
+                  <option class="left" value="roblox.jpg">Roblox</option>
 
                 </select>
               </div>
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav3" class="jogosFav">
                   <option value="" disabled selected>Jogo favorito</option>
-
-                  <option data-icon="img\games\valorant.jpg" class="left" value="valorant.jpg">Valorant</option>
-                  <option data-icon="img\games\minecraft.jpg" class="left" value="minecraft.jpg">Minecraft</option>
-                  <option data-icon="img\games\gtav.jpg" class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option data-icon="img\games\csgo.jpeg" class="left" value="csgo.jpeg">CS:GO</option>
-                  <option data-icon="img\games\dk3.jpg" class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option data-icon="img\games\genshin.jpg" class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option data-icon="img\games\lol.jpg" class="left" value="lol.jpg">League of Legends</option>
-                  <option data-icon="img\games\tft.jpg" class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option data-icon="img\games\mk11.jpg" class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option data-icon="img\games\fortnite.jpg" class="left" value="fortnite.jpg">Fortnite</option>
-                  <option data-icon="img\games\eldenring.jpg" class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option data-icon="img\games\apex.jpg" class="left" value="apex.jpg">Apex Legends</option>
-                  <option data-icon="img\games\wow.jpg" class="left" value="wow.jpg">World of Warcraft</option>
-                  <option data-icon="img\games\codwz.jpg" class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option data-icon="img\games\roblox.jpg" class="left" value="roblox.jpg">Roblox</option>
+                  <option class="left" value="valorant.jpg">Valorant</option>
+                  <option class="left" value="minecraft.jpg">Minecraft</option>
+                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
+                  <option class="left" value="csgo.jpeg">CS:GO</option>
+                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
+                  <option class="left" value="genshin.jpg">Genshin Impact</option>
+                  <option class="left" value="lol.jpg">League of Legends</option>
+                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
+                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
+                  <option class="left" value="fortnite.jpg">Fortnite</option>
+                  <option class="left" value="eldenring.jpg">Elden Ring</option>
+                  <option class="left" value="apex.jpg">Apex Legends</option>
+                  <option class="left" value="wow.jpg">World of Warcraft</option>
+                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
+                  <option class="left" value="roblox.jpg">Roblox</option>
                 </select>
               </div>
             </div>
-
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
-
         </div>
       </li>
     </ul>

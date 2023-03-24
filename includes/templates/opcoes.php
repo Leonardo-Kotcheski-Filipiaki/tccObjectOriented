@@ -1,4 +1,4 @@
-<div id="opcoesDiv" class="center">
+<div id="opcoesDiv" >
 <ul id="aba_perfil">
     <div>
     <h1 id="opcoesperfil" >Opções</h1>

@@ -59,7 +59,7 @@ include DIR_TEMPLATES . '/nav.php';
 
 
 <?php
-$value = $_GET['class'];
+$value = $_GET['msg'];
 if ($value == 'successNameChange') {
     if ($_SESSION['modAlreadyNotified'] == false) {
         echo "<script>
