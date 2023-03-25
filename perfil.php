@@ -7,6 +7,10 @@ include 'config.php';
 include DIR_TEMPLATES . '/head.php';
 include DIR_TEMPLATES . '/nav.php';
 
+$string = $_SESSION['desc'];
+$patterns = '/\n+/';
+$replacements = '<br/>';
+$_SESSION['newDesc'] = preg_replace($patterns, $replacements, $string);
 ?>
 <link rel="stylesheet" href="includes/templates/css/perfil.css">
 
@@ -35,16 +39,16 @@ include DIR_TEMPLATES . '/nav.php';
 
             <div class="col l5 m9 s9" id="descrip">
                 <h2 class="flow-text" id="tituloDescr">Descrição</h2>
-                <p id="descrition"><?php echo $_SESSION['desc']; ?></p>
+                <p id="descrition"> <?php echo $_SESSION['newDesc']; ?></p>
             </div>
 
         </div>
         <div class="col l10 m12 s12" id="jogosFav">
             <h1 class="flow-text">Jogos favoritos</h1>
             <div class="col s10 offset-s1">
-                <img src="" class="responsive-img imgFav" alt="">
-                <img src="" class="responsive-img imgFav" alt="">
-                <img src="" class="responsive-img imgFav" alt="">
+                <img src="./img/games/<?php echo $_SESSION['favGames'][0]?>" class="responsive-img imgFav" alt="">
+                <img src="./img/games/<?php echo $_SESSION['favGames'][1]?>" class="responsive-img imgFav" alt="">
+                <img src="./img/games/<?php echo $_SESSION['favGames'][2]?>" class="responsive-img imgFav" alt="">
 
             </div>
         </div>

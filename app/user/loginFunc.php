@@ -21,7 +21,7 @@ class loginFunc{
         $this->pass = md5($pass);
 
         if(filter_var($this->user, FILTER_VALIDATE_EMAIL)){
-        $stmt = $this->conn->prepare("SELECT usuario, imgPerf FROM usuariostge WHERE email=:user AND senha=:pass");
+        $stmt = $this->conn->prepare("SELECT usuario, imgPerf, descricao, jogoFav1, jogoFav2, jogoFav3 FROM usuariostge WHERE email=:user AND senha=:pass");
         $stmt->bindParam(":user", $this->user);
         $stmt->bindParam(":pass", $this->pass);
         $stmt->execute();
@@ -29,7 +29,7 @@ class loginFunc{
         return $log;
 
         }else{
-        $stmt = $this->conn->prepare("SELECT usuario, imgPerf FROM usuariostge WHERE usuario=:user AND senha=:pass");
+        $stmt = $this->conn->prepare("SELECT usuario, imgPerf, descricao, jogoFav1, jogoFav2, jogoFav3 FROM usuariostge WHERE usuario=:user AND senha=:pass");
         $stmt->bindParam(":user", $this->user);
         $stmt->bindParam(":pass", $this->pass);
         $stmt->execute();

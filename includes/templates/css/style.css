@@ -1,9 +1,7 @@
 *{
     margin: 0;
     text-decoration: none;
-    list-style-type: none;
-    font-family: Helvetica;
-   
+    list-style-type: none;   
 }
 .collection .collection-item.avatar p {
     margin-top: 10px;
@@ -21,7 +19,7 @@
 }
 
 .welcome{
-    font-size: 1.5vw;
+    font-size: 1vh;
     position: relative;
 }
 
@@ -182,7 +180,9 @@ body{
     .row{
         margin-bottom: 0;
     }
-
+#bemvindo{
+    font-size: 1.5vw;
+}
 #rainbow:after{
     content: '';
     position: absolute;
@@ -358,7 +358,7 @@ body{
         width: 150px;
         
     }
-    
+
 }
 @media screen and (max-width: 450px) and (min-width: 356px){
     #bemvindo{

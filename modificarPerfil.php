@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } else if (isset($_POST['descriptionChange'])) {
     $type = 'descriptionChange';
     $value = $_POST['descriptionChange'];
-    if ($value == '') {
+    $str = preg_replace('/\s\s+/', ' ', $value);
+    if ($str == '' || $str == ' ') {
       $_SESSION['errorAlreadyNotified'] = false;
       header("Location: modificar?msg=emptyD");
       exit;
@@ -45,13 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header("Location: user?msg=successDescChange");
       exit;
     }
+  } else if (isset($_POST['jogosFav']) && isset($_POST['jogosFav2']) && isset($_POST['jogosFav3'])) {
+    $type = 'favGameChange';
+    $value = [$_POST['jogosFav'], $_POST['jogosFav2'], $_POST['jogosFav3']];
+    if (sizeof($value) < 1) {
+      $_SESSION['errorAlreadyNotified'] = false;
+      header("Location: modificar?msg=emptyJ");
+      exit;
+    }
+    $table = $_SESSION['type'];
+    $name = $_SESSION['userName'];
+    $try = new updateClass();
+    $result = $try->update($type, $value, $table, $name);
+    if ($result) {
+      $games = [$_POST['jogosFav'], $_POST['jogosFav2'], $_POST['jogosFav3']];
+      $_SESSION['favGames'] = $games;
+      $_SESSION['modAlreadyNotified'] = false;
+      header("Location: user?msg=successGameChange");
+      exit;
+    }
   }
 }
-
-
-
 ?>
-
 <script src="includes/js/jquery.min.js"></script>
 <script src="includes/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -112,8 +128,8 @@ include 'includes/templates/opcoes.php';
 
           <form method="post">
             <h3 class="flow-text" id="tituDesc">Alterar descrição:</h3>
-            <textarea name="descriptionChange" id="textDescr" maxlength="1000" minlength="1" required
-              style="resize: none; height:22vh; color:black; padding:4px 4px 4px 4px; background-color:aliceblue;"></textarea>
+            <textarea name="descriptionChange" id="textDescr" maxlength="500" minlength="1" required
+              style="resize: none; height:22vh; color:black; padding:4px 4px 4px 4px; background-color:aliceblue; white-space: pre-wrap;"></textarea>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
 
@@ -129,11 +145,7 @@ include 'includes/templates/opcoes.php';
 
           <form method="post">
             <h3 class="flow-text" id="tituDesc">Escolha seu jogo favorito!</h3>
-
-
             <div class="col s12 m11">
-
-
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav" class="jogosFav">
                   <option value="" disable selected>Jogo favorito</option>
@@ -173,9 +185,9 @@ include 'includes/templates/opcoes.php';
                   <option class="left" value="wow.jpg">World of Warcraft</option>
                   <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
                   <option class="left" value="roblox.jpg">Roblox</option>
-
                 </select>
               </div>
+
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav3" class="jogosFav">
                   <option value="" disabled selected>Jogo favorito</option>

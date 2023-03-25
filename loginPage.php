@@ -146,6 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $_SESSION['type'] = 'LoggedWithTGE';
       $_SESSION['userName'] = $result['usuario'];
       $_SESSION['imgPerf'] = $result['imgPerf'];
+      $_SESSION['desc'] = $result['descricao'];
+      $_SESSION['favGames'] = [$result['jogoFav1'], $result['jogoFav2'], $result['jogoFav3']];
       header('Location: home?check=success');
       exit;
   } else {
