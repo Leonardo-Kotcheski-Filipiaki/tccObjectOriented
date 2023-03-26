@@ -19,7 +19,7 @@ class updateClass
 
     }
 
-    public function update(string $type, $value, string $table, string $name)
+    public function update(string $type, Array|String $value, string $table, string $name)
     {
 
         if ($type == 'name') {
