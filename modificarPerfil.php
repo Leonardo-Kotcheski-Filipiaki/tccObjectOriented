@@ -147,44 +147,24 @@ include 'includes/templates/opcoes.php';
         </div>
         <div class="collapsible-body">
 
-          <form method="post">
-            <h3 class="flow-text" id="tituDesc">Escolha seu jogo favorito!</h3>
+          <form method="post" >
+            <h3 class="flow-text" id="tituDesc">Escolha seus jogos favoritos!</h3>
             <div class="col s12 m11">
-              <div class="col s12 m3 offset-m1">
-                <select name="jogosFav" class="jogosFav">
-                  <option value="" disable selected>Jogo favorito</option>
+              <div class="col s12 m6 offset-m1" style="margin-left:12vw;">
+                <label for="jogosFav">Escolha até 3 jogos</label>
+                <select name="jogosFav" class="jogosFav" multiple required>
                   <?php
                   foreach ($result as $value) {
-                    echo "<option class='left gameOne' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
+                    echo "<option  value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
                   }
                   ?>
                 </select>
               </div>
-
-              <div class="col s12 m3 offset-m1" id="meioFav">
-                <select name="jogosFav2" class="jogosFav">
-                  <option value="" disabled selected>Jogo favorito</option>
-                  <?php
-                  foreach ($result as $value) {
-                    echo "<option class='left gameTwo' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
-                  }
-                  ?>
-                </select>
-              </div>
-
-              <div class="col s12 m3 offset-m1">
-                <select name="jogosFav3" class="jogosFav">
-                  <option value="" disabled selected>Jogo favorito</option>
-                  <?php
-                  foreach ($result as $value) {
-                    echo "<option class='left gameThree' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
-                  }
-                  ?>
-                </select>
-              </div>
+              
             </div>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
+          
         </div>
       </li>
     </ul>
@@ -227,3 +207,6 @@ if (isset($_GET['msg']) == 'emptyN') {
 
 }
 ?>
+
+
+<script src="includes/js/SelectLimit.js"></script>

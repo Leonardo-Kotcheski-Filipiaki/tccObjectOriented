@@ -51,9 +51,7 @@ font-weight: bold;
 justify-content: center;
 
 }
-#separator{
-    margin-bottom: 2vw;
-}
+
 .collapsible-body{
     border-color: black;
     text-align: center;
@@ -76,6 +74,8 @@ justify-content: center;
     color: aliceblue;
     text-align: center;
 }
+
+
 #lblArq {
     padding: 20px 10px;
     border-radius: 10px;
