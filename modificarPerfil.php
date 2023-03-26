@@ -5,8 +5,12 @@ include 'config.php';
 require __DIR__ . '/vendor/autoload.php';
 
 use \App\user\updateClass;
+use \App\siteFunctions\gamesChoose;
 
 include 'includes/templates/head.php';
+
+$try = new gamesChoose();
+$result = $try->findGames();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['name'])) {
@@ -149,63 +153,33 @@ include 'includes/templates/opcoes.php';
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav" class="jogosFav">
                   <option value="" disable selected>Jogo favorito</option>
-                  <option class="left" value="valorant.jpg">Valorant</option>
-                  <option class="left" value="minecraft.jpg">Minecraft</option>
-                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option class="left" value="csgo.jpeg">CS:GO</option>
-                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option class="left" value="lol.jpg">League of Legends</option>
-                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option class="left" value="fortnite.jpg">Fortnite</option>
-                  <option class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option class="left" value="apex.jpg">Apex Legends</option>
-                  <option class="left" value="wow.jpg">World of Warcraft</option>
-                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option class="left" value="roblox.jpg">Roblox</option>
+                  <?php
+                  foreach ($result as $value) {
+                    echo "<option class='left gameOne' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
+                  }
+                  ?>
                 </select>
               </div>
 
               <div class="col s12 m3 offset-m1" id="meioFav">
                 <select name="jogosFav2" class="jogosFav">
                   <option value="" disabled selected>Jogo favorito</option>
-                  <option class="left" value="valorant.jpg">Valorant</option>
-                  <option class="left" value="minecraft.jpg">Minecraft</option>
-                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option class="left" value="csgo.jpeg">CS:GO</option>
-                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option class="left" value="lol.jpg">League of Legends</option>
-                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option class="left" value="fortnite.jpg">Fortnite</option>
-                  <option class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option class="left" value="apex.jpg">Apex Legends</option>
-                  <option class="left" value="wow.jpg">World of Warcraft</option>
-                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option class="left" value="roblox.jpg">Roblox</option>
+                  <?php
+                  foreach ($result as $value) {
+                    echo "<option class='left gameTwo' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
+                  }
+                  ?>
                 </select>
               </div>
 
               <div class="col s12 m3 offset-m1">
                 <select name="jogosFav3" class="jogosFav">
                   <option value="" disabled selected>Jogo favorito</option>
-                  <option class="left" value="valorant.jpg">Valorant</option>
-                  <option class="left" value="minecraft.jpg">Minecraft</option>
-                  <option class="left" value="gtav.jpg">Grand Theft Auto V</option>
-                  <option class="left" value="csgo.jpeg">CS:GO</option>
-                  <option class="left" value="dk3.jpg">Dark Souls 3</option>
-                  <option class="left" value="genshin.jpg">Genshin Impact</option>
-                  <option class="left" value="lol.jpg">League of Legends</option>
-                  <option class="left" value="tft.jpg">Teamfight Tactics</option>
-                  <option class="left" value="mk11.jpg">Mortal Kombat 11</option>
-                  <option class="left" value="fortnite.jpg">Fortnite</option>
-                  <option class="left" value="eldenring.jpg">Elden Ring</option>
-                  <option class="left" value="apex.jpg">Apex Legends</option>
-                  <option class="left" value="wow.jpg">World of Warcraft</option>
-                  <option class="left" value="codwz.jpg">Call of Duty: Warzone</option>
-                  <option class="left" value="roblox.jpg">Roblox</option>
+                  <?php
+                  foreach ($result as $value) {
+                    echo "<option class='left gameThree' value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
+                  }
+                  ?>
                 </select>
               </div>
             </div>
@@ -221,17 +195,11 @@ include 'includes/templates/opcoes.php';
         $('select').formSelect();
       });
 
-    </script>
-
-    <script>
       $(document).ready(function () {
 
         $('.collapsible').collapsible();
       })
     </script>
-
-
-
 
 
 </body>
