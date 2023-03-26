@@ -147,12 +147,12 @@ include 'includes/templates/opcoes.php';
         </div>
         <div class="collapsible-body">
 
-          <form method="post" >
+          <form method="post">
             <h3 class="flow-text" id="tituDesc">Escolha seus jogos favoritos!</h3>
             <div class="col s12 m11">
               <div class="col s12 m6 offset-m1" style="margin-left:12vw;">
                 <label for="jogosFav">Escolha até 3 jogos</label>
-                <select name="jogosFav" class="jogosFav" multiple required>
+                <select name="jogosFav" class="jogosFav" onchange="limitSelect()" multiple>
                   <?php
                   foreach ($result as $value) {
                     echo "<option  value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
@@ -160,11 +160,11 @@ include 'includes/templates/opcoes.php';
                   ?>
                 </select>
               </div>
-              
+
             </div>
             <button class="btnSub" type="submit">Confirmar</button>
           </form>
-          
+
         </div>
       </li>
     </ul>
@@ -179,9 +179,23 @@ include 'includes/templates/opcoes.php';
 
         $('.collapsible').collapsible();
       })
+
+      //Percorrer options não selecionados e adicionar o atributo disabled neles
+      let select = document.querySelector('select');
+      async function limitSelect() {
+        if(select.selectedOptions.length == 3){
+          for(let i = 0; i != select.options.length; i++){
+              for(let j = 0; j != select.selectedOptions.length; i++){
+                if(select.options[i].value != select.selectedOptions[j].value){
+                  select.options[i].setAttribute['disable']
+                }
+              }
+            }
+          }
+        }
     </script>
 
-
+    <script src="includes/js/SelectLimit.js"></script>
 </body>
 
 </html>
