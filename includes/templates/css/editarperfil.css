@@ -75,6 +75,15 @@ justify-content: center;
     text-align: center;
 }
 
+.emptyJ{
+    position: relative;
+    z-index: 3;
+}
+.emptyN{
+    position: relative;
+    z-index: 3;
+}
+
 
 #lblArq {
     padding: 20px 10px;

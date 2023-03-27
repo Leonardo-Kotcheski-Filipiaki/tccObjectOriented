@@ -4,7 +4,6 @@ namespace App\db;
 
 use \PDO;
 use \PDOException;
-use \OpenSSLAsymmetricKey;
 
 class pdoConnection {
 

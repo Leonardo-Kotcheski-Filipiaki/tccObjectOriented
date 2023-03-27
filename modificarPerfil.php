@@ -50,10 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header("Location: user?msg=successDescChange");
       exit;
     }
-  } else if (isset($_POST['jogosFav']) && isset($_POST['jogosFav2']) && isset($_POST['jogosFav3'])) {
+  } else if (isset($_POST['jogosFav'])) {
+
     $type = 'favGameChange';
-    $value = [$_POST['jogosFav'], $_POST['jogosFav2'], $_POST['jogosFav3']];
-    if (sizeof($value) < 1) {
+    $value = [$_POST['jogosFav'][0], $_POST['jogosFav'][1], $_POST['jogosFav'][2]];
+    if ($value[2] == '' || $value[2] == null) {
       $_SESSION['errorAlreadyNotified'] = false;
       header("Location: modificar?msg=emptyJ");
       exit;
@@ -63,8 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $try = new updateClass();
     $result = $try->update($type, $value, $table, $name);
     if ($result) {
-      $games = [$_POST['jogosFav'], $_POST['jogosFav2'], $_POST['jogosFav3']];
-      $_SESSION['favGames'] = $games;
+      $_SESSION['favGames'] = $value;
       $_SESSION['modAlreadyNotified'] = false;
       header("Location: user?msg=successGameChange");
       exit;
@@ -100,6 +100,9 @@ include 'includes/templates/opcoes.php';
 
   <div class="card-panel red lighten-2 emptyN" id='hide'>
     <p class="center">Nome não pode ser vazio!</p>
+  </div>
+  <div class="card-panel red lighten-2 emptyJ" id='hide'>
+    <p class="center">Selecione 3 jogos por favor!</p>
   </div>
   <div class="row">
 
@@ -152,17 +155,17 @@ include 'includes/templates/opcoes.php';
             <div class="col s12 m11">
               <div class="col s12 m6 offset-m1" style="margin-left:12vw;">
                 <label for="jogosFav">Escolha até 3 jogos</label>
-                <select name="jogosFav" class="jogosFav" onchange="limitSelect()" multiple>
+                <select name="jogosFav[]" class="jogosFav" multiple>
                   <?php
                   foreach ($result as $value) {
-                    echo "<option  value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
+                    echo "<option value='" . $value['nameImg'] . "'>" . $value['name'] . "</option>";
                   }
                   ?>
                 </select>
               </div>
 
             </div>
-            <button class="btnSub" type="submit">Confirmar</button>
+            <button class="btnSub">Confirmar</button>
           </form>
 
         </div>
@@ -179,20 +182,6 @@ include 'includes/templates/opcoes.php';
 
         $('.collapsible').collapsible();
       })
-
-      //Percorrer options não selecionados e adicionar o atributo disabled neles
-      let select = document.querySelector('select');
-      async function limitSelect() {
-        if(select.selectedOptions.length == 3){
-          for(let i = 0; i != select.options.length; i++){
-              for(let j = 0; j != select.selectedOptions.length; i++){
-                if(select.options[i].value != select.selectedOptions[j].value){
-                  select.options[i].setAttribute['disable']
-                }
-              }
-            }
-          }
-        }
     </script>
 
     <script src="includes/js/SelectLimit.js"></script>
@@ -209,7 +198,7 @@ if (isset($_GET['msg']) == 'emptyN') {
         let type = '" . $value . "'
         console.log(type)
         let doc = document.querySelector('.emptyN');
-        if(type == 'empty'){
+        if(type == 'emptyN'){
             doc.removeAttribute('id');
             setTimeout(() => {
                 doc.setAttribute('id', 'hide'); 
@@ -218,9 +207,22 @@ if (isset($_GET['msg']) == 'emptyN') {
         </script>";
     $_SESSION['errorAlreadyNotified'] = true;
   }
-
 }
 ?>
 
+<script>
+  let unsuccess = document.querySelector('.emptyJ');
+  let code = "<?php echo $_GET['msg']; ?>"
+  console.log(code);
+  if(code == 'emptyJ'){
+    unsuccess.removeAttribute('id');
+    setTimeout(() => {
+      unsuccess.setAttribute("id", "hide")
+    }, 1250);
+  }
+
+
+
+</script>
 
 <script src="includes/js/SelectLimit.js"></script>

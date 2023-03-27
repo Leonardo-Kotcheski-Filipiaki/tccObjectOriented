@@ -175,6 +175,8 @@ body{
   #opcoesDiv{
     height: 93.1vh;
     float: left;
+    position: relative;
+    z-index: 4;
     }
 
     .row{
